@@ -1,6 +1,7 @@
 package com.fff.kafka.clients.consumer;
 
 import com.fff.kafka.clients.annotation.Consumer;
+import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -32,6 +33,8 @@ public class ConsumerProcessor {
         return subscribers.stream()
                 .map(consumerClazz -> {
                     Consumer consumerAnnotation = consumerClazz.getClass().getAnnotation(Consumer.class);
+                    Preconditions.checkState(consumerAnnotation != null, "Subscriber must be annotated by @Consumer");
+                    
                     String topic = consumerAnnotation.topic();
                     String groupId = consumerAnnotation.groupId();
                     return new ConsumerExecutor(
