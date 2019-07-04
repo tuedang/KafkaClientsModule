@@ -1,45 +1,39 @@
 package com.fff.kafka.clients.consumer;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import kafka.consumer.KafkaStream;
-import kafka.javaapi.consumer.ConsumerConnector;
-import kafka.message.MessageAndMetadata;
+import com.google.common.collect.ImmutableList;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.errors.WakeupException;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
+import java.time.Duration;
+
 public class ObservableConsumer {
 
-  private final ConsumerConnector consumer;
-  private final String topic;
-  private int streams;
+    private KafkaConsumer<String, String> kafkaConsumer;
+    private final String topic;
+    private int streams;
 
-  public ObservableConsumer(ConsumerConnector consumer, String topic,int streams) {
+    public ObservableConsumer(KafkaConsumer<String, String> kafkaConsumer, String topic, int streams) {
+        this.kafkaConsumer = kafkaConsumer;
+        this.topic = topic;
+        this.streams = streams;
+    }
 
-    this.consumer = consumer;
-    this.topic = topic;
-    this.streams = streams;
-  }
+    public Observable<ConsumerRecord<String, String>> toObservable() {
+        kafkaConsumer.subscribe(ImmutableList.of(topic));
 
-  public Observable<MessageAndMetadata<byte[], byte[]>> toObservable() {
-    Map<String, Integer> topicCount = new HashMap<>();
-    topicCount.put(topic, this.streams);
+        ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMillis(200));
 
-    Map<String, List<KafkaStream<byte[], byte[]>>> consumerStreams = consumer.createMessageStreams(topicCount);
-    List<KafkaStream<byte[], byte[]>> streams = consumerStreams.get(topic);
-    return Observable.from(streams)
-        .flatMap(stream -> {
-              return Observable.from((Iterable<MessageAndMetadata<byte[], byte[]>>) stream.toIterable())
-                  .subscribeOn(Schedulers.io());
-            }
-        )
-        .doOnUnsubscribe(() -> {
-          consumer.shutdown();
-        });
-
-  }
+        return Observable.from(records)
+                .flatMap(consumerRecord -> Observable.just(consumerRecord)
+                        .subscribeOn(Schedulers.io()
+                        )).doOnUnsubscribe(() -> {
+//                    kafkaConsumer.close();
+                });
+    }
 
 
 }

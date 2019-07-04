@@ -3,9 +3,6 @@ package com.fff.kafka.clients.consumer;
 import com.netflix.config.ConfigurationManager;
 import java.util.Properties;
 import java.util.stream.StreamSupport;
-import kafka.consumer.Consumer;
-import kafka.consumer.ConsumerConfig;
-import kafka.javaapi.consumer.ConsumerConnector;
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +28,5 @@ public class ConsumerConnectorBuilder {
     props.put("group.id", groupId);
     return this;
   }
-
-  public ConsumerConnector build() {
-    LOGGER.info("Kafka consumer loaded properties: " + props.toString());
-    return Consumer.createJavaConsumerConnector(new ConsumerConfig(props));
-  }
+  
 }
