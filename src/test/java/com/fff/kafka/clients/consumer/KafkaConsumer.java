@@ -5,7 +5,7 @@ import com.google.inject.Inject;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import rx.Subscriber;
 
-@Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo")
+//@Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo")
 public class KafkaConsumer extends Subscriber<ConsumerRecord<String, String>> {
 
 
