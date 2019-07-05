@@ -18,7 +18,7 @@ import rx.Observer;
 public class ConsumerEngine {
   private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerEngine.class);
   private ConsumerProcessor consumerProcessor;
-  private Map<Class, ConsumerExecutor> consumerExecutors;
+  private Map<String, ConsumerExecutor> consumerExecutors;
 
   @Inject
   public ConsumerEngine(ConsumerProcessor consumerProcessor) {
@@ -28,8 +28,9 @@ public class ConsumerEngine {
 
   @PostConstruct
   public void prepareConsumers() {
-    this.consumerExecutors = consumerProcessor.getConsumers().stream()
-        .collect(Collectors.toMap(ConsumerExecutor::getConsumerClass, Function.identity()));
+    this.consumerExecutors = consumerProcessor.getConsumers()
+            .stream()
+            .collect(Collectors.toMap(ConsumerExecutor::getConsumerKey, Function.identity()));
 
     startAll();
   }

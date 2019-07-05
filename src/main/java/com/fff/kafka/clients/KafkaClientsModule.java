@@ -9,7 +9,7 @@ import com.google.inject.AbstractModule;
 import org.apache.kafka.clients.producer.KafkaProducer;
 
 public class KafkaClientsModule extends AbstractModule {
-    
+
     @Override
     protected void configure() {
         bind(KafkaProducer.class).toProvider(ProducerProvider.class).asEagerSingleton();

@@ -9,17 +9,17 @@ import rx.schedulers.Schedulers;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class ObservableConsumer {
+public class ObservableConsumer<T> {
 
-    private KafkaConsumer<String, String> kafkaConsumer;
+    private KafkaConsumer<String, T> kafkaConsumer;
     private final String topic;
 
-    public ObservableConsumer(KafkaConsumer<String, String> kafkaConsumer, String topic) {
+    public ObservableConsumer(KafkaConsumer<String, T> kafkaConsumer, String topic) {
         this.kafkaConsumer = kafkaConsumer;
         this.topic = topic;
     }
 
-    public Observable<ConsumerRecord<String, String>> toObservable() {
+    public Observable<ConsumerRecord<String, T>> toObservable() {
         kafkaConsumer.subscribe(ImmutableList.of(topic));
 
         return Observable.interval(0, TimeUnit.MILLISECONDS)

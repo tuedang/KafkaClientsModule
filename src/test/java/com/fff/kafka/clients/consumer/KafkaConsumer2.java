@@ -4,7 +4,7 @@ import com.fff.kafka.clients.annotation.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import rx.Subscriber;
 
-@Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo2", streams = 2)
+//@Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo2", streams = 2)
 public class KafkaConsumer2 extends Subscriber<ConsumerRecord<String, String>> {
 
 
