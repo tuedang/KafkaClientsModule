@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.producer;
+package com.fff.kafka.clients.consumer;
 
 import com.google.inject.Inject;
 import org.apache.kafka.clients.producer.KafkaProducer;

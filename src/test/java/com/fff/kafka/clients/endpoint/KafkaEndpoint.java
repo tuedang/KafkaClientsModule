@@ -1,6 +1,8 @@
 package com.fff.kafka.clients.endpoint;
 
-import com.fff.kafka.clients.producer.ObservableProducer;
+import com.fff.kafka.clients.consumer.ObservableProducer;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.google.inject.Inject;
 import io.netty.buffer.ByteBuf;
 import io.reactivex.netty.protocol.http.server.HttpServerRequest;
@@ -31,12 +33,15 @@ public class KafkaEndpoint {
                                                HttpServerResponse<ByteBuf> response) {
         String topic = "middleware_campaign_manager_test";
         String value = "Lalalla";
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("message", new JsonPrimitive(value));
         String key = "42";
 
         ProducerRecord<String, String> producerRecord;
 
         for (int i = 0; i < MESSAGES; i++) {
-            producerRecord = new ProducerRecord<>(topic, value + "_" + ATOMIC_INTEGER.incrementAndGet());
+            jsonObject.add("id", new JsonPrimitive(ATOMIC_INTEGER.incrementAndGet()));
+            producerRecord = new ProducerRecord<>(topic, jsonObject.toString());
             producer.send(producerRecord)
                     .doOnNext(recordMetadata -> {
 //                  System.out.println((String.format("Offset: %d partition: %d", recordMetadata.offset(), recordMetadata.partition())));

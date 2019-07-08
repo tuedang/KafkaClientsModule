@@ -4,7 +4,7 @@ import com.fff.kafka.clients.annotation.Consumer;
 
 public class KafkaConsumerNew {
     @Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo")
-    public void consumerOfMethod(String message) {
+    public void consumerOfMethod(KafkaMessage message) {
         System.out.println("consumerOfMethod-CALL HERE" + message);
     }
 

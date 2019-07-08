@@ -2,11 +2,14 @@ package com.fff.kafka.clients.consumer;
 
 import com.fff.kafka.clients.annotation.Consumer;
 import com.fff.kafka.clients.core.GuiceUtils;
+import com.fff.kafka.clients.core.JsonDeserializer;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import rx.Observer;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,12 +20,12 @@ import java.util.Set;
 
 public class ConsumerProcessor {
     private Injector injector;
-    private ConsumerConnectorBuilder consumerConnectorBuilder;
+    private KafkaConfig kafkaConfig;
 
     @Inject
-    public ConsumerProcessor(Injector injector, ConsumerConnectorBuilder consumerConnectorBuilder) {
+    public ConsumerProcessor(Injector injector, KafkaConfig kafkaConfig) {
         this.injector = injector;
-        this.consumerConnectorBuilder = consumerConnectorBuilder;
+        this.kafkaConfig = kafkaConfig;
     }
 
     public List<ConsumerExecutor> getConsumers() {
@@ -35,15 +38,22 @@ public class ConsumerProcessor {
         for (Method consumerMethod : consumerMethods) {
             Preconditions.checkArgument(consumerMethod.getParameterCount() == 1, "Consumer function must contain only one parameter");
 
-            Class parameterType = consumerMethod.getParameters()[0].getType();
+            Class<?> parameterType = consumerMethod.getParameters()[0].getType();
             Object consumerObject = injector.getInstance(consumerMethod.getDeclaringClass());
             Consumer consumer = consumerMethod.getAnnotation(Consumer.class);
             Observer<ConsumerRecord<String, ?>> observer = new ConsumerObserverAdapter(consumerObject, consumerMethod);
 
-            //converter consumerRecord to appropriate object type on parameterType
-            executors.add(new ConsumerExecutor(consumer.topic(), consumer.groupId(), observer, parameterType, null));
+            Deserializer valueDeserializer = selectDeserializer(parameterType);
+            executors.add(new ConsumerExecutor(consumer.topic(), consumer.groupId(), observer, valueDeserializer, kafkaConfig));
         }
         return executors;
+    }
+
+    private Deserializer selectDeserializer(Class<?> parameterType) {
+        if (parameterType == String.class) {
+            return new StringDeserializer();
+        }
+        return new JsonDeserializer<>(parameterType);
     }
 
     class ConsumerObserverAdapter implements Observer<ConsumerRecord<String, ?>> {
