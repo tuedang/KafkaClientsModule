@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

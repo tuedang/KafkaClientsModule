@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
 import com.google.common.collect.ImmutableList;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

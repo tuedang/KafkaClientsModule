@@ -1,6 +1,6 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
-import com.fff.kafka.clients.annotation.Consumer;
+import com.fabfitfun.kafka.clients.annotation.Consumer;
 
 public class KafkaConsumerNew {
     @Consumer(topic = "middleware_campaign_manager_test", groupId = "forlayo")

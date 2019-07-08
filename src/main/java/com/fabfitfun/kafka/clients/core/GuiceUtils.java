@@ -1,6 +1,6 @@
-package com.fff.kafka.clients.core;
+package com.fabfitfun.kafka.clients.core;
 
-import com.fff.kafka.clients.annotation.Consumer;
+import com.fabfitfun.kafka.clients.annotation.Consumer;
 import com.google.inject.Injector;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;

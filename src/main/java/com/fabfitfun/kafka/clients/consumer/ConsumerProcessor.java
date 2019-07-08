@@ -1,8 +1,8 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
-import com.fff.kafka.clients.annotation.Consumer;
-import com.fff.kafka.clients.core.GuiceUtils;
-import com.fff.kafka.clients.core.JsonDeserializer;
+import com.fabfitfun.kafka.clients.core.GuiceUtils;
+import com.fabfitfun.kafka.clients.core.JsonDeserializer;
+import com.fabfitfun.kafka.clients.annotation.Consumer;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;

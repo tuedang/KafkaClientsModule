@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
 import com.google.inject.Provider;
 import com.netflix.config.ConfigurationManager;

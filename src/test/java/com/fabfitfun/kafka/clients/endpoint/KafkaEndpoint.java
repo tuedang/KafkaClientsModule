@@ -1,6 +1,6 @@
-package com.fff.kafka.clients.endpoint;
+package com.fabfitfun.kafka.clients.endpoint;
 
-import com.fff.kafka.clients.consumer.ObservableProducer;
+import com.fabfitfun.kafka.clients.consumer.ObservableProducer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.inject.Inject;

@@ -1,12 +1,12 @@
-package com.fff.kafka.clients.core;
+package com.fabfitfun.kafka.clients.core;
 
 
-import com.fff.kafka.clients.consumer.ConsumersModule;
+import com.fabfitfun.kafka.clients.KafkaClientsModule;
+import com.fabfitfun.kafka.clients.consumer.ConsumersModule;
 import com.google.inject.Singleton;
 import com.netflix.config.DynamicPropertyFactory;
 import com.netflix.governator.annotations.Modules;
-import com.fff.kafka.clients.KafkaClientsModule;
-import com.fff.kafka.clients.endpoint.KafkaEndpoint;
+import com.fabfitfun.kafka.clients.endpoint.KafkaEndpoint;
 import netflix.karyon.KaryonBootstrap;
 import netflix.karyon.archaius.ArchaiusBootstrap;
 import scmspain.karyon.restrouter.KaryonRestRouterModule;

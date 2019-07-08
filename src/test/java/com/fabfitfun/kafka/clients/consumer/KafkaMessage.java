@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.consumer;
+package com.fabfitfun.kafka.clients.consumer;
 
 public class KafkaMessage {
     private Integer id;

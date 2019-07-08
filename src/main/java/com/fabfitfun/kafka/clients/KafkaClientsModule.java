@@ -1,8 +1,8 @@
-package com.fff.kafka.clients;
+package com.fabfitfun.kafka.clients;
 
-import com.fff.kafka.clients.consumer.ConsumerEngine;
-import com.fff.kafka.clients.consumer.ConsumerProcessor;
-import com.fff.kafka.clients.consumer.KafkaConfig;
+import com.fabfitfun.kafka.clients.consumer.KafkaConfig;
+import com.fabfitfun.kafka.clients.consumer.ConsumerEngine;
+import com.fabfitfun.kafka.clients.consumer.ConsumerProcessor;
 import com.google.inject.AbstractModule;
 
 public class KafkaClientsModule extends AbstractModule {

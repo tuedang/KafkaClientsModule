@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.core;
+package com.fabfitfun.kafka.clients.core;
 
 import com.netflix.governator.guice.BootstrapModule;
 import io.netty.buffer.ByteBuf;

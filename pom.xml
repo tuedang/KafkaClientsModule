@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fff.kafka</groupId>
-    <artifactId>kafka-client</artifactId>
+    <artifactId>kafka-consumer</artifactId>
     <version>0.1.5-SNAPSHOT</version>
     <name>com.fff.kafka:kafka-consumer</name>
 
@@ -22,22 +22,22 @@
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>LATEST</version>
+            <version>0.9.11</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>LATEST</version>
+            <version>4.2.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>LATEST</version>
+            <version>28.0-jre</version>
         </dependency>
         <dependency>
             <groupId>io.reactivex</groupId>
             <artifactId>rxjava</artifactId>
-            <version>LATEST</version>
+            <version>1.3.8</version>
         </dependency>
 
         <!--test-->

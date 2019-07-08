@@ -1,4 +1,4 @@
-package com.fff.kafka.clients.annotation;
+package com.fabfitfun.kafka.clients.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

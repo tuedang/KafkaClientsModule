@@ -1,6 +1,6 @@
-package com.fff.kafka.clients;
+package com.fabfitfun.kafka.clients;
 
-import com.fff.kafka.clients.core.KaryonControllerTest;
+import com.fabfitfun.kafka.clients.core.KaryonControllerTest;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.reactivex.netty.protocol.http.client.HttpClientRequest;
 import io.reactivex.netty.protocol.http.client.HttpClientResponse;
