@@ -7,7 +7,7 @@ public class ConsumersModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(KafkaConsumerNew.class).asEagerSingleton();
+        bind(KafkaConsumerHandler.class).asEagerSingleton();
         bind(ObservableProducer.class).asEagerSingleton();
         bind(KafkaProducer.class).toProvider(ProducerProvider.class).asEagerSingleton();
     }

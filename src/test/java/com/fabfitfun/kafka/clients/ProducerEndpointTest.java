@@ -33,7 +33,7 @@ public class ProducerEndpointTest extends KaryonControllerTest {
                 .timeout(500, TimeUnit.SECONDS)
                 .toBlocking().single();
 
-        Assert.assertEquals("forlayo", body);
+        Assert.assertEquals("success_message", body);
     }
 
 

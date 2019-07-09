@@ -31,25 +31,22 @@ public class KafkaEndpoint {
     @Path(value = "/producer_test", method = HttpMethod.GET)
     public Observable<Void> postMessageToKafka(HttpServerRequest<ByteBuf> request,
                                                HttpServerResponse<ByteBuf> response) {
-        String topic = "middleware_campaign_manager_test";
+        String topic = "kafka_topic_demo";
         String value = "Lalalla";
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("message", new JsonPrimitive(value));
-        String key = "42";
-
-        ProducerRecord<String, String> producerRecord;
 
         for (int i = 0; i < MESSAGES; i++) {
             jsonObject.add("id", new JsonPrimitive(ATOMIC_INTEGER.incrementAndGet()));
-            producerRecord = new ProducerRecord<>(topic, jsonObject.toString());
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, jsonObject.toString());
             producer.send(producerRecord)
                     .doOnNext(recordMetadata -> {
-//                  System.out.println((String.format("Offset: %d partition: %d", recordMetadata.offset(), recordMetadata.partition())));
+                        // log action
                     })
                     .subscribe();
 
         }
-        return response.writeStringAndFlush("forlayo");
+        return response.writeStringAndFlush("success_message");
     }
 
 }

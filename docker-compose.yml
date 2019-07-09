@@ -7,5 +7,5 @@ kafka:
 #ADVERTISED_HOST Must contain the Docker vm ip address, export KAFKA_ADVERTISED_HOST=$(docker-machine ip docker-vm)
 #(Note that docker-vm is the name of the docker machine name)
 #You can also hardcode your docker vm ip address here: ADVERTISED_HOST: 192.168.99.100
-    ADVERTISED_HOST: 192.168.1.149
+    ADVERTISED_HOST: 172.16.50.179
     ADVERTISED_PORT: 9092

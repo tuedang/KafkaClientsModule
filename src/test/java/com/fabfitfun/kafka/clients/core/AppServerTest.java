@@ -19,7 +19,6 @@ import scmspain.karyon.restrouter.serializer.Configuration;
         AppServerTest.KaryonRestRouterModuleImpl.class,
         ConsumersModule.class, KafkaClientsModule.class
 })
-
 public interface AppServerTest {
     class KaryonRestRouterModuleImpl extends KaryonRestRouterModule {
 

@@ -25,22 +25,4 @@ public class JsonSerializer extends Serializer {
     }
   }
 
-// Old way to serialize to bytes and then send to output
-  /*
-  @Override
-  public void serialize(Object obj, SerializeWriter serializeWriter) {
-    try {
-      if (obj == null) {
-        throw new RuntimeException("Object to serialize cannot be null");
-      }
-
-
-      byte[] serializedObj = mapper.writeValueAsBytes(obj);
-      serializeWriter.write(serializedObj);
-
-    } catch (IOException e) {
-      throw new RuntimeException("Error serializing the handler return value: " + obj, e);
-    }
-  }
-  */
 }
