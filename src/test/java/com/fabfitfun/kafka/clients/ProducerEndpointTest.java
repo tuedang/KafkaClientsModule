@@ -8,8 +8,10 @@ import io.reactivex.netty.protocol.http.client.HttpClientResponse;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("This is the integration test and need kafka endpoint")
 public class ProducerEndpointTest extends KaryonControllerTest {
     @Test
     public void itShouldProduceALotOfMessages() throws Exception {
@@ -35,6 +37,4 @@ public class ProducerEndpointTest extends KaryonControllerTest {
 
         Assert.assertEquals("success_message", body);
     }
-
-
 }
